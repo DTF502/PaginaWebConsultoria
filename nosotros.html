@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiénes Somos — Hospitality Intelligence</title>
+  <meta name="description" content="Equipo de consultores especializados en el sector hotelero con más de 10 años de experiencia en digitalización, venta directa y reputación online." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── NOSOTROS-SPECIFIC ── */
+
+    .about-intro {
+      background: var(--color-bg);
+      padding: var(--section-pad) 0;
+    }
+
+    .about-intro__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 8vw, 100px);
+      align-items: start;
+    }
+
+    .about-intro__text h2 {
+      margin-bottom: 24px;
+    }
+
+    .about-intro__text p {
+      margin-bottom: 18px;
+    }
+
+    .about-intro__manifesto {
+      background: var(--color-dark);
+      padding: clamp(32px, 5vw, 56px);
+    }
+
+    .about-intro__manifesto-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-bronze-light);
+      margin-bottom: 28px;
+      display: block;
+    }
+
+    .about-intro__quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+      color: var(--color-white);
+      line-height: 1.5;
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 32px;
+    }
+
+    .about-intro__pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .about-intro__pillar {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .about-intro__pillar-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--color-bronze);
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .about-intro__pillar-text {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+
+    /* Values */
+    .values {
+      background: var(--color-white);
+      padding: var(--section-pad) 0;
+    }
+
+    .values__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .value-card {
+      padding: 36px;
+      border: 1px solid var(--color-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card::before {
+      content: attr(data-letter);
+      position: absolute;
+      bottom: -10px;
+      right: -4px;
+      font-family: var(--font-serif);
+      font-size: 8rem;
+      font-weight: 300;
+      color: rgba(176,125,74,0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .value-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--color-dark);
+      margin-bottom: 14px;
+    }
+
+    .value-card__text {
+      font-size: 0.88rem;
+      color: var(--color-muted);
+      line-height: 1.7;
+    }
+
+    .value-card .line-accent {
+      margin-bottom: 20px;
+    }
+
+    /* Team */
+    .team {
+      background: var(--color-bg);
+      padding: var(--section-pad) 0;
+    }
+
+    .team__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(240px, 1fr));
+      gap: 24px;
+      justify-content: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .team-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+
+    .team-card__img {
+      aspect-ratio: 4/3;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      background: #ffffff;
+    }
+
+    .team-card--portrait .team-card__img img {
+      transform: scale(1);
+      transform-origin: center top;
+    }
+
+    @media (max-width: 1100px) {
+      .team__grid {
+        grid-template-columns: repeat(2, minmax(240px, 1fr));
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .team__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .team-card__img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(176,125,74,0.15) 0%, transparent 60%);
+    }
+
+    .team-card__initials {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      color: rgba(255,255,255,0.15);
+      font-weight: 300;
+    }
+
+    .team-card__info {
+      padding: 28px;
+    }
+
+    .team-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--color-dark);
+      margin-bottom: 4px;
+    }
+
+    .team-card__role {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-bronze);
+      margin-bottom: 14px;
+    }
+
+    .team-card__bio {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      line-height: 1.7;
+    }
+
+    /* Clients */
+    .clients {
+      background: var(--color-dark);
+      padding: clamp(48px, 6vw, 80px) 0;
+    }
+
+    .clients__label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.95);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .clients__logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(32px, 5vw, 64px);
+      flex-wrap: wrap;
+    }
+
+    .clients__logo-item {
+      font-family: var(--font-serif);
+      font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.06em;
+      transition: color 0.3s;
+    }
+
+    .clients__logo-item:hover {
+      color: rgba(255,255,255,1);
+    }
+
+    /* CTA */
+    .about-cta {
+      background: var(--color-bronze-pale);
+      padding: clamp(60px, 8vw, 100px) 0;
+      text-align: center;
+    }
+
+    .about-cta h2 {
+      margin-bottom: 20px;
+    }
+
+    .about-cta p {
+      color: var(--color-muted);
+      max-width: 500px;
+      margin: 0 auto 36px;
+    }
+
+    @media (max-width: 900px) {
+      .about-intro__grid { grid-template-columns: 1fr; }
+      .values__grid { grid-template-columns: 1fr 1fr; }
+      .team__grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 580px) {
+      .values__grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <div class="nav__logo-brand">
+          <img src="Logo.png" alt="Logo Hospitality Intelligence" class="nav__logo-img" />
+          <img src="logonegro.png" alt="Hospitality Intelligence" class="nav__logo-text-img nav__logo-text-img--dark" />
+          <img src="Logoblanco.png" alt="Hospitality Intelligence" class="nav__logo-text-img nav__logo-text-img--light" />
+        </div>
+      </a>
+      <ul class="nav__links">
+        <li><a href="nosotros.html" class="nav__link">Nosotros</a></li>
+        <li><a href="servicios.html" class="nav__link">Servicios</a></li>
+        <li><a href="metodologia.html" class="nav__link">Metodología</a></li>
+        <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+      </ul>
+      <a href="contacto.html" class="nav__cta btn">Solicitar reunión</a>
+      <button class="nav__hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu">
+    <a href="nosotros.html">Nosotros</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="metodologia.html">Metodología</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="contacto.html" class="btn btn--primary" style="margin-top:16px">Solicitar reunión</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="label">Quiénes somos</span>
+      <h1>Conocimiento hotelero.<br>Pensamiento estratégico.</h1>
+      <p>No solo entendemos el sector hotelero. Sabemos cómo tomar decisiones dentro de él.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT INTRO -->
+  <section class="about-intro">
+    <div class="container">
+      <div class="about-intro__grid">
+        <div class="about-intro__text">
+          <span class="label reveal" style="display:block;margin-bottom:20px">Nuestra historia</span>
+          <h2 class="reveal reveal-delay-1">Nacimos del sector.<br>Trabajamos para el sector.</h2>
+          <p class="reveal reveal-delay-2">
+            Hospitality Intelligence nace para aportar una consultoría realmente especializada en el sector hotelero.
+          </p>
+          <p class="reveal reveal-delay-2">
+            Integramos digitalización, estrategia comercial y posicionamiento digital en una única visión de negocio, ayudando a los hoteles a mejorar su rentabilidad, optimizar su canal directo y tomar decisiones más precisas.
+          </p>
+          <p class="reveal reveal-delay-3">
+          Nuestro diferencial: el uso estratégico de datos e inteligencia artificial para transformar información en resultados.
+          </p>
+          <p class="reveal reveal-delay-3">
+          No vendemos tecnología. Mejoramos la rentabilidad del hotel a través de mejores decisiones.
+          </p>
+        </div>
+
+        <div class="about-intro__manifesto reveal reveal-delay-1">
+          <span class="about-intro__manifesto-label">Nuestra filosofía</span>
+          <p class="about-intro__quote">"Los datos sin estrategia son solo números. La estrategia sin datos es solo intuición."</p>
+          <div class="about-intro__pillars">
+            <div class="about-intro__pillar">
+              <span class="about-intro__pillar-dot"></span>
+              <p class="about-intro__pillar-text"> Diagnóstico riguroso antes de actuar. Primero entendemos el contexto del hotel; después definimos la estrategia.</p>
+            </div>
+            <div class="about-intro__pillar">
+              <span class="about-intro__pillar-dot"></span>
+              <p class="about-intro__pillar-text">Trabajo conjunto con el equipo. Nos integramos en la realidad del negocio y transferimos conocimiento útil.</p>
+            </div>
+            <div class="about-intro__pillar">
+              <span class="about-intro__pillar-dot"></span>
+              <p class="about-intro__pillar-text">Decisiones basadas en métricas relevantes. Medimos lo que impacta en rentabilidad, canal directo y posicionamiento.</p>
+            </div>
+            <div class="about-intro__pillar">
+              <span class="about-intro__pillar-dot"></span>
+              <p class="about-intro__pillar-text">Visión de largo plazo. Buscamos construir capacidad interna, no depender de soluciones puntuales.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="values">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Nuestros valores</span>
+        <h2>Lo que nos define</h2>
+      </div>
+      <div class="values__grid">
+        <div class="value-card reveal" data-letter="E">
+          <span class="line-accent"></span>
+          <h3 class="value-card__title">Especialización</h3>
+          <p class="value-card__text">Trabajamos exclusivamente con hoteles.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-1" data-letter="R">
+          <span class="line-accent"></span>
+          <h3 class="value-card__title">Rigor</h3>
+          <p class="value-card__text">Decisiones basadas en datos y análisis.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2" data-letter="C">
+          <span class="line-accent"></span>
+          <h3 class="value-card__title">Cercanía</h3>
+          <p class="value-card__text">Nos integramos en la realidad de cada hotel.</p>
+        </div>
+        <div class="value-card reveal" data-letter="T">
+          <span class="line-accent"></span>
+          <h3 class="value-card__title">Transparencia</h3>
+          <p class="value-card__text">Honestidad en el diagnóstico y en la propuesta.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-1" data-letter="V">
+          <span class="line-accent"></span>
+          <h3 class="value-card__title">Visión a largo plazo</h3>
+          <p class="value-card__text">Construimos estrategias con continuidad.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2" data-letter="I">
+          <span class="line-accent"></span>
+          <h3 class="value-card__title">Impacto real</h3>
+          <p class="value-card__text">Resultados que se traducen en negocio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">El equipo</span>
+        <h2>Un enfoque diseñado para cada hotel</h2>
+      </div>
+      <div class="team__grid">
+        <div class="team-card reveal team-card--portrait">
+          <div class="team-card__img">
+            <img src="macarena.jpg" alt="Macarena Aragón" />
+          </div>
+          <div class="team-card__info">
+            <h3 class="team-card__name">Macarena Aragón</h3>
+            <p class="team-card__role">Fundadora </p>
+            <p class="team-card__bio">Especializada en estrategia, canal directo y transformación digital en el sector hotelero.</p>
+          </div>
+        </div>
+        <div class="team-card reveal reveal-delay-1 team-card--portrait">
+          <div class="team-card__img">
+            <img src="CTO.jpg" alt="Chief Technology Officer" />
+          </div>
+          <div class="team-card__info">
+            <h3 class="team-card__name">Director de Tecnología (C.T.O)</h3>
+            <p class="team-card__role">TECNOLOGÍA · DATOS · IA</p>
+            <p class="team-card__bio">Responsable de la estrategia tecnológica de la empresa, desarrollo de sistemas, web y soluciones digitales.</p>
+          </div>
+        </div>
+        <div class="team-card reveal reveal-delay-2 team-card--portrait">
+          <div class="team-card__img">
+            <img src="especialistas.jpg" alt="Red de especialistas" />
+          </div>
+          <div class="team-card__info">
+            <h3 class="team-card__name">Red de especialistas</h3>
+            <p class="team-card__role"></p>
+            <p class="team-card__bio">Equipo multidisciplinar de expertos en marketing, tecnología y estrategia hotelera que impulsa el crecimiento digital y las reservas directas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section class="clients">
+    <div class="container">
+      <p class="clients__label">Han confiado en nosotros</p>
+      <div class="clients__logos">
+        <span class="clients__logo-item">Hotel Palacio del Mar</span>
+        <span class="clients__logo-item">Grupo Meridian</span>
+        <span class="clients__logo-item">Cala Serena Hotels</span>
+        <span class="clients__logo-item">Hacienda Real</span>
+        <span class="clients__logo-item">Boutique Eixample</span>
+        <span class="clients__logo-item">Costa Blanca Resort</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta">
+    <div class="container">
+      <span class="label reveal" style="display:block;margin-bottom:16px">¿Trabajamos juntos?</span>
+      <h2 class="reveal reveal-delay-1">Conversemos sobre su hotel</h2>
+      <p class="reveal reveal-delay-2">Una primera reunión sin compromiso para conocer su situación actual y explorar si podemos aportarle valor.</p>
+      <a href="contacto.html" class="btn btn--primary reveal reveal-delay-3">
+        Solicitar reunión
+        <svg viewBox="0 0 24 24" width="14" height="14" stroke-width="2" stroke="currentColor" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <p class="footer__brand-name">Hospitality Intelligence</p>
+        </div>
+        <div>
+          <p class="footer__col-title">Servicios</p>
+          <ul class="footer__links">
+            <li><a href="servicios.html#digitalizacion">Digitalización</a></li>
+            <li><a href="servicios.html#venta-directa">Venta Directa</a></li>
+            <li><a href="servicios.html#reputacion">Visibilidad y Reputación</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Empresa</p>
+          <ul class="footer__links">
+            <li><a href="nosotros.html">Quiénes somos</a></li>
+            <li><a href="metodologia.html">Metodología</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Contacto</p>
+          <ul class="footer__links">
+            <li><a href="mailto:hola@hospitalityintelligence.es">info@hospitalityintelligence.es</a></li>
+            <li><a href="tel:+34910000000">+34 691 245 873</a></li>
+            <li style="color:rgba(255,255,255,0.35);font-size:0.85rem;">Palma de Mallorca, España</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2025 Hospitality Intelligence. Todos los derechos reservados.</span>
+        <span class="footer__copy">Política de privacidad · Aviso legal</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

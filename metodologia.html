@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metodología — Hospitality Intelligence</title>
+  <meta name="description" content="Nuestra metodología de consultoría hotelera: diagnóstico riguroso, estrategia a medida, implementación acompañada y seguimiento de resultados." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── METODOLOGÍA-SPECIFIC ── */
+
+    .methodology-intro {
+      background: var(--color-bg);
+      padding: var(--section-pad) 0;
+    }
+
+    .methodology-intro__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 8vw, 100px);
+      align-items: center;
+    }
+
+    .methodology-intro__text h2 {
+      margin-bottom: 24px;
+    }
+
+    .methodology-intro__text p {
+      margin-bottom: 18px;
+    }
+
+    .methodology-intro__principles {
+      background: var(--color-dark);
+      padding: clamp(32px, 4vw, 52px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .method-principle {
+      border-top: 1px solid rgba(176,125,74,0.3);
+      padding-top: 20px;
+    }
+
+    .method-principle__label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-bronze-light);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .method-principle__text {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+
+    /* Process steps detailed */
+    .process-steps {
+      background: var(--color-white);
+      padding: var(--section-pad) 0;
+    }
+
+    .process-step-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 clamp(32px, 5vw, 60px);
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .process-step-row:not(:last-child) .step-left::after {
+      content: '';
+      position: absolute;
+      top: 68px;
+      left: 27px;
+      bottom: -40px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--color-bronze), transparent);
+      opacity: 0.3;
+    }
+
+    .step-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding-bottom: 40px;
+    }
+
+    .step-circle {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--color-bronze);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-white);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-circle span {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--color-bronze);
+    }
+
+    .step-right {
+      padding-bottom: 60px;
+    }
+
+    .step-right__phase {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-bronze);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .step-right h3 {
+      margin-bottom: 16px;
+      color: var(--color-dark);
+    }
+
+    .step-right p {
+      margin-bottom: 20px;
+    }
+
+    .step-right__details {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px 24px;
+    }
+
+    .step-detail {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .step-detail::before {
+      content: '→';
+      color: var(--color-bronze);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-detail p {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* FAQ */
+    .faq {
+      background: var(--color-bg);
+      padding: var(--section-pad) 0;
+    }
+
+    .faq__list {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .faq-item__question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .faq-item__question-text {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--color-dark);
+      font-weight: 400;
+    }
+
+    .faq-item__icon {
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .faq-item__icon svg {
+      width: 10px;
+      height: 10px;
+      stroke: var(--color-bronze);
+      fill: none;
+      stroke-width: 2.5;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-item__icon {
+      background: var(--color-bronze);
+      border-color: var(--color-bronze);
+    }
+
+    .faq-item.open .faq-item__icon svg {
+      stroke: white;
+      transform: rotate(45deg);
+    }
+
+    .faq-item__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease-out);
+    }
+
+    .faq-item.open .faq-item__answer {
+      max-height: 300px;
+    }
+
+    .faq-item__answer p {
+      padding-bottom: 24px;
+      color: var(--color-muted);
+    }
+
+    /* CTA */
+    .methodology-cta {
+      background: var(--color-bronze-pale);
+      padding: clamp(60px, 8vw, 100px) 0;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .methodology-intro__grid { grid-template-columns: 1fr; }
+      .methodology-intro__principles { grid-template-columns: 1fr; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .step-right__details { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <div class="nav__logo-brand">
+          <img src="Logo.png" alt="Logo Hospitality Intelligence" class="nav__logo-img" />
+          <img src="logonegro.png" alt="Hospitality Intelligence" class="nav__logo-text-img nav__logo-text-img--dark" />
+          <img src="Logoblanco.png" alt="Hospitality Intelligence" class="nav__logo-text-img nav__logo-text-img--light" />
+        </div>
+      </a>
+      <ul class="nav__links">
+        <li><a href="nosotros.html" class="nav__link">Nosotros</a></li>
+        <li><a href="servicios.html" class="nav__link">Servicios</a></li>
+        <li><a href="metodologia.html" class="nav__link">Metodología</a></li>
+        <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+      </ul>
+      <a href="contacto.html" class="nav__cta btn">Solicitar reunión</a>
+      <button class="nav__hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu">
+    <a href="nosotros.html">Nosotros</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="metodologia.html">Metodología</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="contacto.html" class="btn btn--primary" style="margin-top:16px">Solicitar reunión</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="label">Cómo trabajamos</span>
+      <h1>Un método riguroso para<br>resultados predecibles.</h1>
+      <p>Cada proyecto comienza con escucha y análisis. Cada propuesta está fundamentada en datos. Cada resultado se mide con honestidad.</p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="methodology-intro">
+    <div class="container">
+      <div class="methodology-intro__grid">
+        <div class="methodology-intro__text">
+          <span class="label reveal" style="display:block;margin-bottom:20px">Nuestro enfoque</span>
+          <h2 class="reveal reveal-delay-1">Estrategia antes<br>que soluciones.</h2>
+          <p class="reveal reveal-delay-2">
+             No trabajamos con propuestas estándar ni con soluciones predefinidas.
+          </p>
+          <p class="reveal reveal-delay-2">
+            Primero analizamos la situación real del hotel. Después diseñamos un plan de acción adaptado a sus necesidades, objetivos y oportunidades.
+          </p>
+          <p class="reveal reveal-delay-3">
+            Trabajamos con criterio, con datos y en coordinación con el equipo interno para que cada decisión tenga sentido y continuidad.
+          </p>
+        </div>
+
+        <div class="methodology-intro__principles reveal reveal-delay-1">
+          <div class="method-principle">
+            <span class="method-principle__label">Diagnóstico primero</span>
+            <p class="method-principle__text">Analizamos antes de proponer.</p>
+          </div>
+          <div class="method-principle">
+            <span class="method-principle__label">A medida</span>
+            <p class="method-principle__text">Nada estándar. Todo adaptado.</p>
+          </div>
+          <div class="method-principle">
+            <span class="method-principle__label">Con datos</span>
+            <p class="method-principle__text">Decisiones con base real.</p>
+          </div>
+          <div class="method-principle">
+            <span class="method-principle__label">Con seguimiento</span>
+            <p class="method-principle__text">Medimos, ajustamos y mejoramos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS STEPS DETAILED -->
+  <section class="process-steps">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">El proceso</span>
+        <h2>Cuatro fases.<br>Claridad en cada una.</h2>
+      </div>
+
+      <div class="process-step-row reveal">
+        <div class="step-left">
+          <div class="step-circle"><span>1</span></div>
+        </div>
+        <div class="step-right">
+          <span class="step-right__phase">Fase 01</span>
+          <h3>Diagnóstico</h3>
+          <p>Analizamos la situación actual del hotel para identificar prioridades, oportunidades y áreas de mejora.</p>
+          <div class="step-right__details">
+            <div class="step-detail"><p>Canal de ventas y mix</p></div>
+            <div class="step-detail"><p>Sistemas, reputación y métricas</p></div>
+            <div class="step-detail"><p>Posición competitiva</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step-row reveal reveal-delay-1">
+        <div class="step-left">
+          <div class="step-circle"><span>2</span></div>
+        </div>
+        <div class="step-right">
+          <span class="step-right__phase">Fase 02</span>
+          <h3>Estrategia</h3>
+          <p>Definimos un plan de acción claro, con objetivos concretos, prioridades y hoja de ruta.</p>
+          <div class="step-right__details">
+            <div class="step-detail"><p>Objetivos y métricas</p></div>
+            <div class="step-detail"><p>Priorización de iniciativas</p></div>
+            <div class="step-detail"><p>Plan de acción y calendario</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step-row reveal reveal-delay-2">
+        <div class="step-left">
+          <div class="step-circle"><span>3</span></div>
+        </div>
+        <div class="step-right">
+          <span class="step-right__phase">Fase 03</span>
+          <h3>Implementación</h3>
+          <p>Ponemos en marcha las acciones junto al equipo, asegurando coordinación y seguimiento.</p>
+          <div class="step-right__details">
+            <div class="step-detail"><p>Ejecución de iniciativas</p></div>
+            <div class="step-detail"><p>Acompañamiento al equipo</p></div>
+            <div class="step-detail"><p>Gestión de ajustes e incidencias</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step-row reveal reveal-delay-3">
+        <div class="step-left">
+          <div class="step-circle"><span>4</span></div>
+        </div>
+        <div class="step-right">
+          <span class="step-right__phase">Fase 04</span>
+          <h3>Seguimiento y optimización</h3>
+          <p>Medimos resultados, revisamos avances y ajustamos la estrategia para maximizar su impacto.</p>
+          <div class="step-right__details">
+            <div class="step-detail"><p>Seguimiento de KPIs</p></div>
+            <div class="step-detail"><p>Revisión periódica</p></div>
+            <div class="step-detail"><p>Identificación de mejoras</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-header section-header--center reveal">
+        <span class="label">Preguntas frecuentes</span>
+        <h2>Lo que nos preguntan<br>habitualmente</h2>
+      </div>
+
+      <div class="faq__list">
+        <div class="faq-item reveal">
+          <button class="faq-item__question">
+            <span class="faq-item__question-text">¿Trabajáis solo con hoteles grandes o también con independientes?</span>
+            <span class="faq-item__icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-item__answer">
+            <p>Trabajamos con hoteles de todos los tamaños, desde establecimientos independientes y boutique hasta grupos hoteleros de tamaño medio. La condición no es el tamaño, sino la disposición del equipo directivo a trabajar de forma estratégica y sostenida.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-1">
+          <button class="faq-item__question">
+            <span class="faq-item__question-text">¿Cuánto dura un proyecto habitualmente?</span>
+            <span class="faq-item__icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-item__answer">
+            <p>Depende del alcance. Un diagnóstico inicial puede completarse en 2-3 semanas. Un proyecto de implementación completo suele tener una duración de entre 3 y 9 meses, seguido de una fase de seguimiento continuo. Adaptamos siempre el ritmo a la realidad del cliente.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-2">
+          <button class="faq-item__question">
+            <span class="faq-item__question-text">¿El diagnóstico inicial tiene coste?</span>
+            <span class="faq-item__icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-item__answer">
+            <p>La primera reunión de exploración es sin coste ni compromiso. En ella analizamos conjuntamente la situación del hotel y evaluamos si existe un encaje real entre sus necesidades y lo que podemos aportarle. Si hay un diagnóstico más detallado posterior, se presupuesta por separado.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-3">
+          <button class="faq-item__question">
+            <span class="faq-item__question-text">¿Trabajáis con los tres servicios a la vez o se pueden contratar por separado?</span>
+            <span class="faq-item__icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-item__answer">
+            <p>Ambas opciones son posibles. Hay hoteles que nos contratan para una sola área de trabajo, y otros para las tres de forma integrada. Cuando trabajamos las tres áreas conjuntamente, el impacto suele ser mayor por la coherencia y la sinergia entre ellas. Pero siempre priorizamos lo que tiene más sentido para cada caso.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-item__question">
+            <span class="faq-item__question-text">¿Qué resultados podemos esperar y en qué plazo?</span>
+            <span class="faq-item__icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-item__answer">
+            <p>No ofrecemos resultados garantizados ni cifras genéricas sin conocer el punto de partida. Lo que sí garantizamos es un diagnóstico honesto, un plan fundamentado y un seguimiento riguroso. Los primeros indicios de mejora suelen ser visibles entre los 3 y 6 meses, dependiendo del área de trabajo y la velocidad de implementación.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="methodology-cta">
+    <div class="container" style="text-align:center">
+      <span class="label reveal" style="display:block;margin-bottom:16px">Siguiente paso</span>
+      <h2 class="reveal reveal-delay-1" style="margin-bottom:32px">Empecemos con un diagnóstico</h2>
+      <p class="reveal reveal-delay-2" style="color:var(--color-muted);max-width:500px;margin:0 auto 36px">
+        Una primera conversación para entender la situación actual de su hotel y explorar qué áreas ofrecen mayor potencial de mejora.
+      </p>
+      <a href="contacto.html" class="btn btn--primary reveal reveal-delay-3">
+        Solicitar reunión gratuita
+        <svg viewBox="0 0 24 24" width="14" height="14" stroke-width="2" stroke="currentColor" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <p class="footer__brand-name">Hospitality Intelligence</p>
+        </div>
+        <div>
+          <p class="footer__col-title">Servicios</p>
+          <ul class="footer__links">
+            <li><a href="servicios.html#digitalizacion">Digitalización</a></li>
+            <li><a href="servicios.html#venta-directa">Venta Directa</a></li>
+            <li><a href="servicios.html#reputacion">Visibilidad y Reputación</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Empresa</p>
+          <ul class="footer__links">
+            <li><a href="nosotros.html">Quiénes somos</a></li>
+            <li><a href="metodologia.html">Metodología</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Contacto</p>
+          <ul class="footer__links">
+            <li><a href="mailto:hola@hospitalityintelligence.es">info@hospitalityintelligence.es</a></li>
+            <li><a href="tel:+34910000000">+34 691 245 873</a></li>
+            <li style="color:rgba(255,255,255,0.35);font-size:0.85rem;">Palma de Mallorca, España</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2025 Hospitality Intelligence. Todos los derechos reservados.</span>
+        <span class="footer__copy">Política de privacidad · Aviso legal</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-item__question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

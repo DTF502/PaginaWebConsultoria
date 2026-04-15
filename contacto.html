@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto — Hospitality Intelligence</title>
+  <meta name="description" content="Solicite una reunión de diagnóstico gratuita con Hospitality Intelligence. Consultoría especializada en digitalización, venta directa y reputación online para hoteles." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── CONTACTO-SPECIFIC ── */
+
+    .contact-main {
+      background: var(--color-bg);
+      padding: var(--section-pad) 0;
+    }
+
+    .contact-main__grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: clamp(48px, 8vw, 100px);
+      align-items: start;
+    }
+
+    /* Left col: info */
+    .contact-info h2 {
+      margin-bottom: 20px;
+    }
+
+    .contact-info > p {
+      margin-bottom: 40px;
+    }
+
+    .contact-detail {
+      margin-bottom: 32px;
+    }
+
+    .contact-detail__label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-bronze);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .contact-detail__value {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--color-dark);
+    }
+
+    .contact-detail__value a {
+      transition: color 0.2s;
+    }
+
+    .contact-detail__value a:hover {
+      color: var(--color-bronze);
+    }
+
+    .contact-promise {
+      background: var(--color-dark);
+      padding: 32px;
+      margin-top: 40px;
+    }
+
+    .contact-promise__label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-bronze-light);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .contact-promise__items {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-promise__item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .contact-promise__dot {
+      width: 5px;
+      height: 5px;
+      background: var(--color-bronze);
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .contact-promise__item p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    /* Right col: form */
+    .contact-form-wrap {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      padding: clamp(32px, 5vw, 52px);
+    }
+
+    .contact-form-wrap h3 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      margin-bottom: 8px;
+    }
+
+    .contact-form-wrap > p {
+      font-size: 0.88rem;
+      color: var(--color-muted);
+      margin-bottom: 36px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-charcoal);
+    }
+
+    .form-group label .req {
+      color: var(--color-bronze);
+      margin-left: 2px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--color-dark);
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+      border-radius: 0;
+      width: 100%;
+    }
+
+    .form-group select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7068' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--color-bronze);
+      box-shadow: 0 0 0 3px rgba(176,125,74,0.08);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(122,112,104,0.5);
+    }
+
+    .form-submit {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .form-submit__note {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+    }
+
+    .form-submit .btn {
+      min-width: 200px;
+      justify-content: center;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .form-success__icon {
+      width: 64px;
+      height: 64px;
+      border: 1px solid var(--color-bronze);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .form-success__icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--color-bronze);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .form-success h4 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .form-success p {
+      color: var(--color-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Map / location visual */
+    .contact-map-visual {
+      background: var(--color-dark);
+      padding: clamp(48px, 6vw, 80px) 0;
+    }
+
+    .contact-map-visual__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+    }
+
+    .contact-map-visual__text .label {
+      color: var(--color-bronze-light);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .contact-map-visual__text h3 {
+      color: var(--color-white);
+      margin-bottom: 20px;
+    }
+
+    .contact-map-visual__text p {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .contact-map-visual__cities {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .city-pill {
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 12px 16px;
+      text-align: center;
+    }
+
+    .city-pill__name {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .city-pill__country {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-top: 4px;
+    }
+
+    .contact-map-visual__visual {
+      aspect-ratio: 4/3;
+      background: transparent;
+      border: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-map-card {
+      width: 100%;
+      min-height: 100%;
+      padding: clamp(20px, 4vw, 30px);
+      border-radius: 14px;
+      text-align: center;
+      color: var(--color-white);
+      background:
+        radial-gradient(130% 130% at 0% 0%, rgba(176,125,74,0.58), transparent 62%),
+        linear-gradient(145deg, #4a3a2e, #5a4739 52%, #4c3c2f);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .contact-map-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(176,125,74,0.65);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.36);
+    }
+
+    .contact-map-card:focus-visible {
+      outline: 2px solid var(--color-bronze);
+      outline-offset: 3px;
+    }
+
+    .contact-map-card__content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-map-card__label {
+      display: inline-block;
+      font-size: 0.66rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-bronze-light);
+      margin-bottom: 12px;
+    }
+
+    .contact-map-card__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.45rem, 2.7vw, 2rem);
+      color: var(--color-white);
+      margin-bottom: 10px;
+    }
+
+    .contact-map-card__address {
+      color: rgba(255,255,255,0.84);
+      font-size: 0.95rem;
+      max-width: 40ch;
+      line-height: 1.5;
+      margin: 0 auto;
+    }
+
+    .contact-map-card__cta {
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.94);
+    }
+
+    .contact-map-card__cta svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    @media (max-width: 900px) {
+      .contact-main__grid { grid-template-columns: 1fr; }
+      .contact-map-visual__inner { grid-template-columns: 1fr; }
+      .contact-map-visual__visual { min-height: 260px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .contact-map-card { padding: 20px; }
+      .contact-map-card__address { font-size: 0.9rem; }
+      .contact-map-card__cta { font-size: 0.74rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <div class="nav__logo-brand">
+          <img src="Logo.png" alt="Logo Hospitality Intelligence" class="nav__logo-img" />
+          <img src="logonegro.png" alt="Hospitality Intelligence" class="nav__logo-text-img nav__logo-text-img--dark" />
+          <img src="Logoblanco.png" alt="Hospitality Intelligence" class="nav__logo-text-img nav__logo-text-img--light" />
+        </div>
+      </a>
+      <ul class="nav__links">
+        <li><a href="nosotros.html" class="nav__link">Nosotros</a></li>
+        <li><a href="servicios.html" class="nav__link">Servicios</a></li>
+        <li><a href="metodologia.html" class="nav__link">Metodología</a></li>
+        <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+      </ul>
+      <a href="contacto.html" class="nav__cta btn">Solicitar reunión</a>
+      <button class="nav__hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu">
+    <a href="nosotros.html">Nosotros</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="metodologia.html">Metodología</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="contacto.html" class="btn btn--primary" style="margin-top:16px">Solicitar reunión</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="label">Contacto</span>
+      <h1>Hablemos de su hotel.</h1>
+      <p>Una primera conversación para entender su situación y explorar si podemos aportarle valor. Sin coste, sin compromiso.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT MAIN -->
+  <section class="contact-main">
+    <div class="container">
+      <div class="contact-main__grid">
+
+        <!-- Info left -->
+        <div class="contact-info reveal">
+          <span class="label" style="display:block;margin-bottom:20px">Información de contacto</span>
+          <h2>Estamos disponibles<br>para escucharle.</h2>
+          <p>Si dirige o gestiona un hotel y está pensando en mejorar su canal directo, modernizar sus procesos o reforzar su presencia digital, este es el primer paso.</p>
+
+          <div class="contact-detail">
+            <span class="contact-detail__label">Email</span>
+            <p class="contact-detail__value"><a href="mailto:info@hospitalityintelligence.es">info@hospitalityintelligence.es</a></p>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail__label">Teléfono</span>
+            <p class="contact-detail__value"><a href="tel:+34691 245 873">+34 691 245 873</a></p>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail__label">Sede</span>
+            <p class="contact-detail__value">Carrer de Sant Miquel, 30, 07002 Palma, Illes Balears</p>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail__label">Horario de atención</span>
+            <p class="contact-detail__value" style="font-size:1.15rem;font-family:var(--font-serif)">Lunes a viernes. 9:00 – 18:00. </p>
+          </div>
+
+          <div class="contact-promise">
+            <span class="contact-promise__label">Qué ocurre cuando nos escribe</span>
+            <div class="contact-promise__items">
+              <div class="contact-promise__item">
+                <span class="contact-promise__dot"></span>
+                <p>Respondemos en menos de 24 horas en días laborables</p>
+              </div>
+              <div class="contact-promise__item">
+                <span class="contact-promise__dot"></span>
+                <p>Una primera reunión de exploración, sin coste ni compromiso</p>
+              </div>
+              <div class="contact-promise__item">
+                <span class="contact-promise__dot"></span>
+                <p>Interlocución directa con un consultor senior desde el primer momento</p>
+              </div>
+              <div class="contact-promise__item">
+                <span class="contact-promise__dot"></span>
+                <p>Sus datos no se compartirán con terceros ni se usarán para comunicaciones no solicitadas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form right -->
+        <div class="contact-form-wrap reveal reveal-delay-1">
+          <h3>Solicitar reunión</h3>
+          <p>Complete el formulario y nos pondremos en contacto para coordinar una primera llamada o reunión.</p>
+
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre">Nombre <span class="req">*</span></label>
+                <input type="text" id="nombre" name="nombre" placeholder="Su nombre" required />
+              </div>
+              <div class="form-group">
+                <label for="apellidos">Apellidos <span class="req">*</span></label>
+                <input type="text" id="apellidos" name="apellidos" placeholder="Sus apellidos" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email profesional <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="nombre@suhotel.com" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="hotel">Nombre del hotel / grupo</label>
+                <input type="text" id="hotel" name="hotel" placeholder="Nombre del establecimiento" />
+              </div>
+              <div class="form-group">
+                <label for="cargo">Cargo</label>
+                <input type="text" id="cargo" name="cargo" placeholder="Director/a, propietario/a…" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="servicio">Área de interés</label>
+              <select id="servicio" name="servicio">
+                <option value="" disabled selected>Seleccionar área</option>
+                <option value="digitalizacion">Digitalización</option>
+                <option value="venta-directa">Venta Directa</option>
+                <option value="reputacion">Visibilidad y Reputación Online</option>
+                <option value="todos">Las tres áreas</option>
+                <option value="no-se">No lo tengo claro todavía</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="mensaje">Cuéntenos su situación</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Describa brevemente su hotel, sus principales retos actuales o qué le ha llevado a contactarnos. No hace falta que sea exhaustivo: lo hablaremos en la reunión." rows="5"></textarea>
+            </div>
+
+            <div class="form-submit">
+              <p class="form-submit__note">* Campos obligatorios</p>
+              <button type="submit" class="btn btn--primary">
+                Enviar solicitud
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke-width="2" stroke="currentColor" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+            </div>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            <div class="form-success__icon">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h4>Solicitud recibida</h4>
+            <p>Gracias por contactar con Hospitality Intelligence. Nos pondremos en contacto en menos de 24 horas para coordinar una primera reunión.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="contact-map-visual">
+    <div class="container">
+      <div class="contact-map-visual__inner">
+        <div class="contact-map-visual__text reveal">
+          <span class="label">Dónde operamos</span>
+          <h3>Trabajamos con hoteles<br>en toda la geografía</h3>
+          <p>Nuestra base está en Palma de Mallorca, pero trabajamos con hoteles a nivel nacional e internacional.</p>
+
+          <div class="contact-map-visual__cities">
+            <div class="city-pill">
+              <p class="city-pill__name">Comunidad Valenciana</p>
+              <p class="city-pill__country">España</p>
+            </div>
+            <div class="city-pill">
+              <p class="city-pill__name">Baleares</p>
+              <p class="city-pill__country">España</p>
+            </div>
+            <div class="city-pill">
+              <p class="city-pill__name">Comunidad de Madrid</p>
+              <p class="city-pill__country">España</p>
+            </div>
+            <div class="city-pill">
+              <p class="city-pill__name">Canarias</p>
+              <p class="city-pill__country">España</p>
+            </div>
+            <div class="city-pill">
+              <p class="city-pill__name">Cataluña</p>
+               <p class="city-pill__country">España</p>
+            </div>
+            <div class="city-pill">
+              <p class="city-pill__name">Internacional</p>
+              <p class="city-pill__country">Consultar</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-map-visual__visual reveal reveal-delay-1">
+          <a
+            class="contact-map-card"
+            href="https://www.google.com/maps/search/?api=1&query=Carrer+de+Sant+Miquel+30%2C+07002+Palma%2C+Illes+Balears"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Abrir dirección exacta de la sede en Google Maps"
+            title="Abrir en Google Maps"
+          >
+            <div class="contact-map-card__content">
+              <p class="contact-map-card__title">Nuestra ubicación</p>
+              <p class="contact-map-card__address">Carrer de Sant Miquel, 30, 07002 Palma, Illes Balears</p>
+              <span class="contact-map-card__cta">
+                Ver en Google Maps →
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <p class="footer__brand-name">Hospitality Intelligence</p>
+        </div>
+        <div>
+          <p class="footer__col-title">Servicios</p>
+          <ul class="footer__links">
+            <li><a href="servicios.html#digitalizacion">Digitalización</a></li>
+            <li><a href="servicios.html#venta-directa">Venta Directa</a></li>
+            <li><a href="servicios.html#reputacion">Visibilidad y Reputación</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Empresa</p>
+          <ul class="footer__links">
+            <li><a href="nosotros.html">Quiénes somos</a></li>
+            <li><a href="metodologia.html">Metodología</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Contacto</p>
+          <ul class="footer__links">
+            <li><a href="mailto:hola@hospitalityintelligence.es">info@hospitalityintelligence.es</a></li>
+            <li><a href="tel:+34910000000">+34 691 245 873</a></li>
+            <li style="color:rgba(255,255,255,0.35);font-size:0.85rem;">Palma de Mallorca, España</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2025 Hospitality Intelligence. Todos los derechos reservados.</span>
+        <span class="footer__copy">Política de privacidad · Aviso legal</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Form submit with success state
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('[type="submit"]');
+      const original = btn.innerHTML;
+      btn.innerHTML = 'Enviando…';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      }, 1200);
+    });
+  </script>
+</body>
+</html>

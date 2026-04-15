@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospitality Intelligence — Consultoría Estratégica para Hoteles</title>
+  <meta name="description" content="Consultoría especializada en digitalización, venta directa y reputación online para hoteles y cadenas hoteleras. Transformamos datos en rentabilidad hotelera." />
+  <meta name="keywords" content="consultoría hotelera, venta directa hotel, digitalización hotelera, reputación online hotel, estrategia hotelera, revenue management" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── HOME-SPECIFIC STYLES ── */
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--color-dark);
+      position: relative;
+      overflow: hidden;
+      padding-top: var(--nav-height);
+    }
+
+    .hero__bg-text {
+      position: absolute;
+      bottom: -2vw;
+      right: -1vw;
+      font-family: var(--font-serif);
+      font-size: clamp(140px, 20vw, 300px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.025);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .hero__line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: clamp(280px, 40vw, 560px);
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(176,125,74,0.3) 30%, rgba(176,125,74,0.3) 70%, transparent);
+      pointer-events: none;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 0 clamp(20px, 5vw, 60px);
+      max-width: var(--container);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.3s var(--ease-out) forwards;
+    }
+
+    .hero__eyebrow-line {
+      width: 32px;
+      height: 1px;
+      background: var(--color-bronze);
+    }
+
+    .hero__eyebrow-text {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-bronze-light);
+    }
+
+    .hero__title {
+      color: var(--color-white);
+      max-width: 780px;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s var(--ease-out) forwards;
+    }
+
+    .hero__title em {
+      font-style: italic;
+      color: var(--color-bronze-light);
+    }
+
+    .hero__subtitle {
+      color: rgba(255,255,255,0.6);
+      max-width: 500px;
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      line-height: 1.75;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.7s var(--ease-out) forwards;
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.9s var(--ease-out) forwards;
+    }
+
+    .hero__scroll {
+      position: absolute;
+      bottom: 36px;
+      left: clamp(20px, 5vw, 60px);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 0.6s 1.3s forwards;
+    }
+
+    .hero__scroll-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .hero__scroll-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* About teaser */
+    .about-teaser {
+      background: var(--color-bg);
+    }
+
+    .about-teaser__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 8vw, 100px);
+      align-items: center;
+    }
+
+    .about-teaser__visual {
+      position: relative;
+    }
+
+    .about-teaser__img-frame {
+      background: var(--color-charcoal);
+      aspect-ratio: 4/5;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-teaser__img-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(176,125,74,0.2) 0%, transparent 50%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 39px,
+          rgba(255,255,255,0.03) 40px
+        );
+    }
+
+    .about-teaser__img-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-teaser__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .about-teaser__badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--color-bronze);
+      color: var(--color-white);
+      padding: 20px 24px;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .about-teaser__text .label {
+      margin-bottom: 20px;
+    }
+
+    .about-teaser__text h2 {
+      margin-bottom: 24px;
+    }
+
+    .about-teaser__text p {
+      margin-bottom: 20px;
+    }
+
+    .about-teaser__text p:last-of-type {
+      margin-bottom: 36px;
+    }
+
+    /* Services preview */
+    .services-preview {
+      background: var(--color-white);
+    }
+
+    .services-preview__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--color-border);
+      border: 1px solid var(--color-border);
+    }
+
+    .service-card {
+      background: var(--color-white);
+      padding: clamp(32px, 4vw, 52px);
+      display: flex;
+      flex-direction: column;
+      transition: background 0.3s;
+      position: relative;
+    }
+
+    .service-card:hover {
+      background: var(--color-dark);
+    }
+
+    .service-card:hover .service-card__num,
+    .service-card:hover .service-card__title,
+    .service-card:hover .service-card__desc {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .service-card:hover .service-card__link {
+      color: var(--color-bronze-light);
+    }
+
+    .service-card:hover .service-card__icon {
+      border-color: rgba(176,125,74,0.4);
+    }
+
+    .service-card__num {
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      color: var(--color-bronze);
+      margin-bottom: 28px;
+      transition: color 0.3s;
+    }
+
+    .service-card__icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      transition: border-color 0.3s;
+    }
+
+    .service-card__icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--color-bronze);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .service-card__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2vw, 1.8rem);
+      font-weight: 400;
+      color: var(--color-dark);
+      margin-bottom: 16px;
+      transition: color 0.3s;
+    }
+
+    .service-card__desc {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 28px;
+      transition: color 0.3s;
+    }
+
+    .service-card__link {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-bronze);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s, gap 0.25s;
+    }
+
+    .service-card:hover .service-card__link {
+      gap: 12px;
+    }
+
+    .service-card__link svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Why us */
+    .why-us {
+      background: var(--color-dark);
+      color: var(--color-white);
+    }
+
+    .why-us .section-header h2 {
+      color: var(--color-white);
+    }
+
+    .why-us .section-header p {
+      color: rgba(255,255,255,0.55);
+    }
+
+    .why-us__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .why-card {
+      background: var(--color-dark);
+      padding: clamp(32px, 4vw, 48px);
+      transition: background 0.3s;
+    }
+
+    .why-card:hover {
+      background: var(--color-charcoal);
+    }
+
+    .why-card__num {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: rgba(176,125,74,0.35);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .why-card__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+      color: var(--color-white);
+      margin-bottom: 14px;
+    }
+
+    .why-card__text {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.75;
+    }
+
+    /* Process teaser */
+    .process-teaser {
+      background: var(--color-bg);
+    }
+
+    .process-teaser__steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .process-teaser__steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: var(--color-bronze);
+      opacity: 0.3;
+    }
+
+    .process-step {
+      padding: clamp(16px, 2.5vw, 28px);
+      text-align: center;
+    }
+
+    .process-step__dot {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--color-bronze);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      background: var(--color-bg);
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-step__dot span {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--color-bronze);
+    }
+
+    .process-step__title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--color-dark);
+      margin-bottom: 10px;
+    }
+
+    .process-step__text {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      line-height: 1.65;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: var(--color-white);
+    }
+
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .testimonial-card {
+      border: 1px solid var(--color-border);
+      padding: 36px;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      color: var(--color-bronze);
+      opacity: 0.25;
+      line-height: 1;
+    }
+
+    .testimonial-card__text {
+      font-size: 0.9rem;
+      color: var(--color-charcoal);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      font-style: italic;
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+    }
+
+    .testimonial-card__author {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .testimonial-card__name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-dark);
+    }
+
+    .testimonial-card__role {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+    }
+
+    /* CTA section */
+    .cta-section {
+      background: var(--color-bronze);
+      padding: clamp(60px, 8vw, 100px) 0;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: var(--color-white);
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    .cta-section .btn--primary {
+      background: var(--color-white);
+      color: var(--color-bronze);
+    }
+
+    .cta-section .btn--primary:hover {
+      background: var(--color-dark);
+      color: var(--color-white);
+    }
+
+    .cta-section .btn--outline {
+      border-color: rgba(255,255,255,0.5);
+      color: var(--color-white);
+    }
+
+    .cta-section .btn--outline:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: var(--color-white);
+    }
+
+    .cta-section__btns {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @media (max-width: 960px) {
+      .about-teaser__grid { grid-template-columns: 1fr; }
+      .about-teaser__visual { display: none; }
+      .services-preview__grid { grid-template-columns: 1fr; }
+      .why-us__grid { grid-template-columns: 1fr; }
+      .process-teaser__steps { grid-template-columns: repeat(2, 1fr); }
+      .process-teaser__steps::before { display: none; }
+      .testimonials__grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 580px) {
+      .services-preview__grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════ NAVIGATION ═══════════════ -->
+  <nav class="nav" role="navigation" aria-label="Navegación principal">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Hospitality Intelligence – Inicio">
+        <div class="nav__logo-brand">
+          <img src="Logo.png" alt="Logo Hospitality Intelligence" class="nav__logo-img" />
+          <img src="logonegro.png" alt="Hospitality Intelligence" class="nav__logo-text-img nav__logo-text-img--dark" />
+          <img src="Logoblanco.png" alt="Hospitality Intelligence" class="nav__logo-text-img nav__logo-text-img--light" />
+        </div>
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="nosotros.html" class="nav__link">Nosotros</a></li>
+        <li><a href="servicios.html" class="nav__link">Servicios</a></li>
+        <li><a href="metodologia.html" class="nav__link">Metodología</a></li>
+        <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+      </ul>
+      <a href="contacto.html" class="nav__cta btn">Solicitar reunión</a>
+      <button class="nav__hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" role="dialog" aria-label="Menú móvil">
+    <a href="nosotros.html">Nosotros</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="metodologia.html">Metodología</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="contacto.html" class="btn btn--primary" style="margin-top:16px">Solicitar reunión</a>
+  </div>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero__bg-text" aria-hidden="true">HI</div>
+    <div class="hero__line" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <div class="hero__eyebrow">
+        <span class="hero__eyebrow-line"></span>
+        <span class="hero__eyebrow-text">Consultoría Estratégica para el Sector Hotelero</span>
+      </div>
+
+      <h1 class="hero__title" id="hero-heading">
+        Transformamos datos<br>en <em>rentabilidad hotelera.</em>
+      </h1>
+
+      <p class="hero__subtitle">
+        No vendemos IA, vendemos mejorar la rentabilidad del hotel analizando datos y utilizando inteligencia artificial.
+      </p>
+
+      <div class="hero__actions">
+        <a href="contacto.html" class="btn btn--primary">
+          Solicitar asesoramiento
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="servicios.html" class="btn btn--outline" style="border-color:rgba(255,255,255,0.3);color:#fff;">
+          Ver servicios
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <span class="hero__scroll-line"></span>
+      <span class="hero__scroll-text">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ABOUT TEASER ═══════════════ -->
+  <section class="about-teaser">
+    <div class="container">
+      <div class="about-teaser__grid">
+        <div class="about-teaser__visual reveal">
+          <div class="about-teaser__img-frame">
+            <div class="about-teaser__img-inner">
+              <img src="hotel.png" alt="Imagen del hotel" class="about-teaser__img" />
+            </div>
+          </div>
+          <div class="about-teaser__badge">Especialistas en hotelería</div>
+        </div>
+
+        <div class="about-teaser__text">
+          <span class="label reveal">Quiénes somos</span>
+          <h2 class="reveal reveal-delay-1">Consultoría especializada.<br>Resultados medibles.</h2>
+          <p class="reveal reveal-delay-2">
+            Hospitality Intelligence es una consultora especializada en el sector hotelero.
+          </p>
+          <p class="reveal reveal-delay-3">
+            Ayudamos a los hoteles a mejorar su rentabilidad, optimizar su canal directo y tomar decisiones más eficaces a partir de sus datos.
+          </p><p class="reveal reveal-delay-3" style="margin-bottom: 40px;">
+            No trabajamos con soluciones genéricas. Diseñamos estrategias adaptadas a la realidad de cada establecimiento.
+          </p>
+          <a href="nosotros.html" class="btn btn--primary reveal reveal-delay-4">
+            Conocer el equipo
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SERVICES PREVIEW ═══════════════ -->
+  <section class="services-preview">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Nuestros servicios</span>
+        <h2>Tres áreas. Un único objetivo:<br>hacer crecer su hotel.</h2>
+      </div>
+
+      <div class="services-preview__grid">
+        <!-- Digitalización -->
+        <div class="service-card reveal">
+          <span class="service-card__num">01</span>
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3 class="service-card__title">Digitalización</h3>
+          <p class="service-card__desc">Modernizamos la operativa del hotel para ganar eficiencia, reducir errores y aprovechar mejor los datos en la toma de decisiones.</p>
+          <a href="servicios.html#digitalizacion" class="service-card__link">
+            Saber más
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Venta Directa -->
+        <div class="service-card reveal reveal-delay-1">
+          <span class="service-card__num">02</span>
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <h3 class="service-card__title">Venta Directa</h3>
+          <p class="service-card__desc">Impulsamos el canal directo para aumentar reservas propias, reducir intermediación y mejorar el control sobre el cliente.</p>
+          <a href="servicios.html#venta-directa" class="service-card__link">
+            Saber más
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Reputación Online -->
+        <div class="service-card reveal reveal-delay-2">
+          <span class="service-card__num">03</span>
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3 class="service-card__title">Visibilidad y Reputación</h3>
+          <p class="service-card__desc">Construimos una presencia digital sólida que mejora la percepción del hotel y atrae al cliente adecuado.</p>
+          <a href="servicios.html#reputacion" class="service-card__link">
+            Saber más
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ WHY US ═══════════════ -->
+  <section class="why-us">
+    <div class="container">
+      <div class="section-header section-header--center reveal">
+        <span class="label" style="color:var(--color-bronze-light)">Por qué elegirnos</span>
+        <h2>Estrategia basada en datos. Decisiones con impacto.</h2>
+        <p style="color: rgba(255,255,255,0.9)">Combinamos conocimiento hotelero, analítica avanzada e inteligencia artificial para tomar decisiones más precisas, anticiparnos al mercado y generar resultados reales.</p>
+      </div>
+
+      <div class="why-us__grid">
+        <div class="why-card reveal">
+          <div class="why-card__num">01</div>
+          <h4 class="why-card__title">Especialización hotelera</h4>
+          <p class="why-card__text">Trabajamos exclusivamente con hoteles. Entendemos el negocio desde dentro.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-1">
+          <div class="why-card__num">02</div>
+          <h4 class="why-card__title">Datos como base</h4>
+          <p class="why-card__text">Transformamos datos en información útil para tomar decisiones claras y accionables.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-2">
+          <div class="why-card__num">03</div>
+          <h4 class="why-card__title">Inteligencia aplicada</h4>
+          <p class="why-card__text">Utilizamos analítica avanzada e inteligencia artificial para detectar oportunidades y optimizar resultados.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-3">
+          <div class="why-card__num">04</div>
+          <h4 class="why-card__title">Estrategia conectada</h4>
+          <p class="why-card__text">Unimos tecnología, marketing y revenue en una única visión estratégica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PROCESS TEASER ═══════════════ -->
+  <section class="process-teaser">
+    <div class="container">
+      <div class="section-header section-header--center reveal">
+        <span class="label">Cómo trabajamos</span>
+        <h2>Un proceso riguroso,<br>resultados claros</h2>
+      </div>
+
+      <div class="process-teaser__steps">
+        <div class="process-step reveal">
+          <div class="process-step__dot"><span>1</span></div>
+          <h4 class="process-step__title">Diagnóstico</h4>
+          <p class="process-step__text">Análisis del hotel, sus datos y oportunidades clave.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-1">
+          <div class="process-step__dot"><span>2</span></div>
+          <h4 class="process-step__title">Estrategia</h4>
+          <p class="process-step__text">Definición de un plan claro, enfocado a resultados.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="process-step__dot"><span>3</span></div>
+          <h4 class="process-step__title">Implementación</h4>
+          <p class="process-step__text">Ejecución acompañada, alineada con el equipo.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-3">
+          <div class="process-step__dot"><span>4</span></div>
+          <h4 class="process-step__title">Seguimiento</h4>
+          <p class="process-step__text">Medición continua y optimización basada en datos.</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:48px" class="reveal">
+        <a href="metodologia.html" class="btn btn--outline">Ver nuestra metodología completa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header section-header--center reveal">
+        <span class="label">Lo que dicen nuestros clientes</span>
+        <h2>Resultados que hablan<br>por sí solos</h2>
+      </div>
+
+      <div class="testimonials__grid">
+        <div class="testimonial-card reveal">
+          <p class="testimonial-card__text">Trabajar con Hospitality Intelligence transformó la forma en que entendemos nuestro canal directo. En ocho meses, las reservas directas crecieron un 41% y la dependencia de las OTAs bajó de forma considerable.</p>
+          <div class="testimonial-card__author">
+            <span class="testimonial-card__name">Carlos Mendoza</span>
+            <span class="testimonial-card__role">Director General, Hotel Palacio del Mar</span>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-1">
+          <p class="testimonial-card__text">Lo que más valoramos fue su profundo conocimiento del sector. No llegaron con soluciones estándar, llegaron con preguntas inteligentes. Eso marcó toda la diferencia en el resultado final.</p>
+          <div class="testimonial-card__author">
+            <span class="testimonial-card__name">Sofía Rivas</span>
+            <span class="testimonial-card__role">Directora de Marketing, Grupo Hoteles Meridian</span>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <p class="testimonial-card__text">Nuestra puntuación en los principales portales mejoró en menos de seis meses. Hoy recibimos más solicitudes de grupos y eventos, y el perfil de cliente ha mejorado notablemente.</p>
+          <div class="testimonial-card__author">
+            <span class="testimonial-card__name">Andrés Vidal</span>
+            <span class="testimonial-card__role">Propietario, Boutique Hotel Cala Serena</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CTA FINAL ═══════════════ -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="reveal">¿Hablamos de su hotel?</h2>
+      <p class="reveal reveal-delay-1">Una primera conversación sin compromiso para entender su situación actual y explorar qué palancas pueden activar un crecimiento real.</p>
+      <div class="cta-section__btns reveal reveal-delay-2">
+        <a href="contacto.html" class="btn btn--primary">
+          Solicitar reunión gratuita
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke-width="2" stroke="currentColor" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="servicios.html" class="btn btn--outline">Explorar servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <p class="footer__brand-name">Hospitality Intelligence</p>
+        </div>
+        <div>
+          <p class="footer__col-title">Servicios</p>
+          <ul class="footer__links">
+            <li><a href="servicios.html#digitalizacion">Digitalización</a></li>
+            <li><a href="servicios.html#venta-directa">Venta Directa</a></li>
+            <li><a href="servicios.html#reputacion">Visibilidad y Reputación</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Empresa</p>
+          <ul class="footer__links">
+            <li><a href="nosotros.html">Quiénes somos</a></li>
+            <li><a href="metodologia.html">Metodología</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Contacto</p>
+          <ul class="footer__links">
+            <li><a href="mailto:hola@hospitalityintelligence.es">info@hospitalityintelligence.es</a></li>
+            <li><a href="tel:+34910000000">+34 691 245 873</a></li>
+            <li style="color:rgba(255,255,255,0.35);font-size:0.85rem;">Palma de Mallorca, España</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2025 Hospitality Intelligence. Todos los derechos reservados.</span>
+        <span class="footer__copy">Política de privacidad · Aviso legal</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
