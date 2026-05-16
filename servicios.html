@@ -271,7 +271,17 @@
       .service-block__side { position: static; }
       .service-detail__grid { grid-template-columns: 1fr; }
       .deliverables__list { grid-template-columns: 1fr; }
-      .service-tab { padding: 16px 14px; font-size: 0.68rem; }
+      .service-tab {
+        padding: 16px 14px;
+        font-size: 0.68rem;
+        white-space: normal;
+        text-align: center;
+      }
+      .service-tabs__inner {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
     }
 
     /* Data-driven section */
@@ -582,7 +592,6 @@
     <div class="container">
       <div class="footer__inner">
         <div>
-          <p class="footer__brand-name">Hospitality Intelligence</p>
         </div>
         <div>
           <p class="footer__col-title">Servicios</p>

@@ -572,9 +572,35 @@ section {
     display: flex;
   }
 
+  section {
+    padding: clamp(60px, 8vw, 90px) 0;
+  }
+
   .footer__inner {
     grid-template-columns: 1fr 1fr;
     gap: 32px;
+  }
+
+  .service-tabs__inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .service-tab {
+    flex: 1 1 140px;
+    min-width: 140px;
+    white-space: normal;
+    text-align: center;
+    padding: 14px 16px;
+  }
+
+  .services-preview__grid,
+  .why-us__grid,
+  .process-teaser__steps,
+  .testimonials__grid,
+  .contact-map-visual__cities {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -587,5 +613,9 @@ section {
     flex-direction: column;
     gap: 12px;
     text-align: center;
+  }
+
+  .contact-map-visual__cities {
+    grid-template-columns: 1fr;
   }
 }
